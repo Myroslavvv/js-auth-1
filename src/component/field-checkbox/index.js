@@ -1,16 +1,7 @@
-class FieldPassword {
+class FieldCheckbox {
     static toggle = (target) => {
-        target.toggleAttribute('show')
-
-        const input = target.previousElementSibling
-        const type = input.getAttribute('type')
-
-        if(type === 'password') {
-            input.setAttribute('type', 'text')
-        } else {
-            input.setAttribute('type', 'password')
-        }
+        target.toggleAttribute('active')
     }
 }
 
-window.fieldPassword = FieldPassword;
+window.fieldCheckbox = FieldCheckbox;

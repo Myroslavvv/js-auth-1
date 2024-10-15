@@ -5,7 +5,7 @@
 	.field__select {
 		
 		border: 1px solid s.color('box');
-		background-color: s.color('box');
+		background: s.color('box');
 		padding: s.space(4);
 		border-radius: 10px;
 		
@@ -21,7 +21,7 @@
 	
 	.field__value {
 		font-size: 14px;
-		color: s.color('dark');
+		color: s.color(dark);
 		
 		&--placeholder {
 			color: s.color(light);
@@ -34,15 +34,14 @@
 	}
 	
 	.field__container:hover {
-		.field--select {
+		.field__select {
 			border-color: s.color(gray);
-
 		}
 	}
 
 	.field__label--select {
 		font-size: 16px;
-		color: s.color(dark);
+		color: s.color('dark');
 	}
 	
 	.field__icon {

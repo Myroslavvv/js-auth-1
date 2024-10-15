@@ -29,6 +29,13 @@ class User {
 	static create(data) {
 		const user = new User(data)
 		this.#list.push(user)
+		console.log(this.#list)
+	}
+
+	static getByMail(email) {
+		return (
+			this.#list.find((user) => user.email === email) || null
+		)
 	}
 }
 
