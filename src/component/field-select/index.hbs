@@ -2,7 +2,7 @@
     <span class="field__label">{{label}}</span>
 
     <div class="field__container">
-        <button onclick="fieldSelect.toggle(this)" type="button" class="field__select">
+        <button onclick="fieldSelect.toggle(this)" type="button" class="field__select validation" name="{{name}}">
             <span class="field__value field__value--placeholder">{{placeholder}}</span>
             <span class="field__icon"></span>
         </button>
@@ -22,7 +22,7 @@
 <div class="field field--select">
 	<label for="{{name}}" class="field__label">{{label}}</label>
 	<div class="field__input">
-        <select name="option" class="field__container field__select">
+        <select name="option" class="field__container field__select validation--active">
             <option class="field__option" onclick="fieldSelect.selectOption(this)">Користувач</option>
             <option class="field__option" onclick="fieldSelect.selectOption(this)">Адміністратор</option>
             <option class="field__option" onclick="fieldSelect.selectOption(this)">Розробник</option>

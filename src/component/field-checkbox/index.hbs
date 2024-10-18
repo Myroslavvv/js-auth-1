@@ -2,7 +2,7 @@
     <button onclick="
         this.toggleAttribute('active');
         {{action}}('{{name}}', this.hasAttribute('active'));
-    " type="button" class="field__wrapper">
+    " type="button" class="field__wrapper validation" name="{{name}}">
         <input type="checkbox" class="field__input"> 
         <span class="field__icon"></span>
         <span class="field__label field__label--checkbox">{{label}}</span>

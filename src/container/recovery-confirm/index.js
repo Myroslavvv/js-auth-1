@@ -1,12 +1,11 @@
+// import { SassNumber } from 'sass'
 import{Form, REG_EXP_EMAIL, REG_EXP_PASSWORD} from '../../script/form'
 
-class SignupForm extends Form {
+class RecoveryConfirmForm extends Form {
     FIELD_NAME = {
-        EMAIL: 'email',
+        CODE: 'code',
         PASSWORD: 'password',
         PASSWORD_AGAIN: 'passwordAgain',
-        ROLE: 'role',
-        IS_CONFIRM: 'isConfirm',
     }
 
     FIELD_ERROR = {
@@ -15,8 +14,6 @@ class SignupForm extends Form {
         EMAIL: 'Веедіть коректне значення email адреси',
         PASSWORD: 'Пароль повинен складатися з не менше ніж 8 символів,включаючи хоча б одну цифру,малу та велику літеру',
         PASSWORD_AGAIN: 'Ваш другий пароль не збігається з першим',
-        NOT_CONFIRM: 'Ви не погоджуєтесь з правилами',
-        ROLE: 'ВИ не обрали роль',
     }
     
     validate = (name, value) => {
@@ -28,12 +25,6 @@ class SignupForm extends Form {
             return this.FIELD_ERROR.IS_BIG
         }
 
-        if(name === this.FIELD_NAME.EMAIL) {
-            if(!REG_EXP_EMAIL.test(String(value))) {
-                return this.FIELD_ERROR.EMAIL
-            }
-        }
-        
         if(name === this.FIELD_NAME.PASSWORD) {
             if(!REG_EXP_PASSWORD.test(String(value))) {
                 return this.FIELD_ERROR.PASSWORD
@@ -44,18 +35,6 @@ class SignupForm extends Form {
         if(name === this.FIELD_NAME.PASSWORD_AGAIN) {
             if(String(value) !== this.value[this.FIELD_NAME.PASSWORD]) {
                 return this.FIELD_ERROR.PASSWORD_AGAIN
-            }
-        }
-        
-        // if(name === this.FIELD_NAME.ROLE) {
-            // if(isNaN(value)) {
-            //     return this.FIELD_ERROR.ROLE
-            // }
-        // }
-            
-        if(name === this.FIELD_NAME.IS_CONFIRM) {
-            if(Boolean(value) !== true) {
-                return this.FIELD_ERROR.NOT_CONFIRM
             }
         }
     }
@@ -69,7 +48,7 @@ class SignupForm extends Form {
             this.setAlert('progress', 'Завантаження...')
 
             try {
-              const res = await fetch('/signup', {
+              const res = await fetch('/recovery-confirm', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,31 +69,12 @@ class SignupForm extends Form {
 
     convertData = () => {
         return JSON.stringify({
-            [this.FIELD_NAME.EMAIL]:
-            this.value[this.FIELD_NAME.EMAIL],
+            [this.FIELD_NAME.CODE]:
+            Number(this.value[this.FIELD_NAME.CODE]),
             [this.FIELD_NAME.PASSWORD]:
             this.value[this.FIELD_NAME.PASSWORD],
-            // [this.FIELD_NAME.ROLE]:
-            // this.value[this.FIELD_NAME.ROLE],
-			[this.FIELD_NAME.IS_CONFIRM]: 
-			this.value[this.FIELD_NAME.IS_CONFIRM],
         })
     }
-
-    // static value = {}
-
-    // static validate = (name, value) => {
-     //     return true
-    // }
-
-    // static submit = () => {
-    //     console.log(this.value)
-    // }
-
-    // static change = (name, value) => {
-    //     console.log(name, value)
-    //     if(this.validate(name, value)) this.value[name] = value
-    // }
 }
 
-window.signupForm = new SignupForm();
+window.recoveryConfirmForm = new RecoveryConfirmForm();
