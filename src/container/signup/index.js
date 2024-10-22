@@ -1,4 +1,5 @@
 import{Form, REG_EXP_EMAIL, REG_EXP_PASSWORD} from '../../script/form'
+import{saveSession} from '../../script/session'
 
 class SignupForm extends Form {
     FIELD_NAME = {
@@ -38,7 +39,6 @@ class SignupForm extends Form {
             if(!REG_EXP_PASSWORD.test(String(value))) {
                 return this.FIELD_ERROR.PASSWORD
             }
-
         }
 
         if(name === this.FIELD_NAME.PASSWORD_AGAIN) {
@@ -64,7 +64,7 @@ class SignupForm extends Form {
         if(this.disabled === true) {
             this.validateAll()
         } else {
-            console.log(this.value)
+            console.log(this.value) 
 
             this.setAlert('progress', 'Завантаження...')
 
@@ -79,6 +79,8 @@ class SignupForm extends Form {
               const data = await res.json()
                if(res.ok) {
 				this.setAlert('success', data.message)
+                saveSession(data.session)
+                location.assign('/')
 			   } else {
 				this.setAlert('error', data.message)
 			   }
@@ -101,20 +103,6 @@ class SignupForm extends Form {
         })
     }
 
-    // static value = {}
-
-    // static validate = (name, value) => {
-     //     return true
-    // }
-
-    // static submit = () => {
-    //     console.log(this.value)
-    // }
-
-    // static change = (name, value) => {
-    //     console.log(name, value)
-    //     if(this.validate(name, value)) this.value[name] = value
-    // }
 }
 
 window.signupForm = new SignupForm();
