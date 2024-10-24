@@ -1,5 +1,5 @@
 class User {
-	static USER_ROLE ={
+	static USER_ROLE = {
 		USER: 1,
 		ADMIN: 2,
 		DEVELOPER: 3,
@@ -40,9 +40,19 @@ class User {
 
 	static getByEmail(email) {
 		return (
-			this.#list.find((user) => user.email === String(email).toLowerCase(),) || null
+			this.#list.find((user) => user.email === String(email).toLowerCase()) || null
 		)
 	}
+
+	static getById(id) {
+		return (
+			this.#list.find((user) => user.id === Number(id)) || null
+		)
+	}
+
+	static getList() {
+        return this.#list; // Метод для повернення списка користувачів
+    }
 }
 
 module.exports = {
